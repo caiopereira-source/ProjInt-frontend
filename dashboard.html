@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="img/logo-gamean-branco-1000x1000.png" rel="icon">
+  <link href="static/img/logo-gamean-branco-1000x1000.png" rel="icon">
 
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
@@ -25,7 +25,7 @@
   <link href="static/vendor/quill/quill.bubble.css" rel="stylesheet">
   <link href="static/vendor/remixicon/remixicon.css" rel="stylesheet">
   <link href="static/vendor/simple-datatables/style.css" rel="stylesheet">
-
+  <script src="static/vendor/chart.js/chart.umd.js"></script>
   <link href="static/css/inner-style.css" rel="stylesheet">
   <link href="static/css/style.css" rel="stylesheet">
 </head>
@@ -129,7 +129,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="static/img/profile-picture.webp" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">Usuario</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2">Usuário Alpha</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -281,73 +281,66 @@
                   <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
                   <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
                     <li class="dropdown-header text-start">
-                      <h6>Filter</h6>
+                      <h6>Filtrar por</h6>
                     </li>
-
-                    <li><a class="dropdown-item" href="#">Today</a></li>
-                    <li><a class="dropdown-item" href="#">This Month</a></li>
-                    <li><a class="dropdown-item" href="#">This Year</a></li>
+    
+                    <li><a class="dropdown-item" href="#">Este Mês</a></li>
+                    <li><a class="dropdown-item" href="#">Últimos 6 meses</a></li>
+                    <li><a class="dropdown-item" href="#">Último Ano</a></li>
                   </ul>
                 </div>
 
                 <div class="card-body reports">
-                  <h5 class="card-title">Reports <span>/Today</span></h5>
+                  <h5>Resumo <span></span></h5>
 
                   <!-- Line Chart -->
-                  <div id="reportsChart"></div>
+                  <canvas id="barChart" width="400" height="400" style="max-height: 60vh; color: white;"></canvas>
 
                   <script>
-                    document.addEventListener("DOMContentLoaded", () => {
-                      new ApexCharts(document.querySelector("#reportsChart"), {
-                        series: [{
-                          name: 'Sales',
-                          data: [31, 40, 28, 51, 42, 82, 56],
-                        }, {
-                          name: 'Revenue',
-                          data: [11, 32, 45, 32, 34, 52, 41]
-                        }, {
-                          name: 'Customers',
-                          data: [15, 11, 32, 18, 9, 24, 11]
-                        }],
-                        chart: {
-                          height: 350,
-                          type: 'area',
-                          toolbar: {
-                            show: false
-                          },
-                        },
-                        markers: {
-                          size: 4
-                        },
-                        colors: ['#4154f1', '#2eca6a', '#ff771d'],
-                        fill: {
-                          type: "gradient",
-                          gradient: {
-                            shadeIntensity: 1,
-                            opacityFrom: 0.3,
-                            opacityTo: 0.4,
-                            stops: [0, 90, 100]
-                          }
-                        },
-                        dataLabels: {
-                          enabled: false
-                        },
-                        stroke: {
-                          curve: 'smooth',
-                          width: 2
-                        },
-                        xaxis: {
-                          type: 'datetime',
-                          categories: ["2018-09-19T00:00:00.000Z", "2018-09-19T01:30:00.000Z", "2018-09-19T02:30:00.000Z", "2018-09-19T03:30:00.000Z", "2018-09-19T04:30:00.000Z", "2018-09-19T05:30:00.000Z", "2018-09-19T06:30:00.000Z"]
-                        },
-                        tooltip: {
-                          x: {
-                            format: 'dd/MM/yy HH:mm'
-                          },
-                        }
-                      }).render();
-                    });
+                      var data = {
+            labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul"],
+            datasets: [
+                {
+                    label: 'Receitas',
+                    data: [1200, 1500, 1300, 1700, 1600, 1800, 1950],
+                    borderColor: "rgba(45, 138, 8, 0.6)",
+                    backgroundColor: "rgba(45, 138, 8, 0.6)"
+                },
+                {
+                    label: 'Despesas',
+                    data: [800, 1000, 750, 850, 950, 700, 1000],
+                    borderColor: "rgba(255, 87, 51, 0.6)",
+                    backgroundColor: "rgba(255, 87, 51, 0.6)"
+                }
+            ]
+        };
+
+        // Obtenha o elemento canvas
+        var ctx = document.getElementById("barChart").getContext("2d");
+
+        // Crie o gráfico de barras
+        Chart.defaults.borderColor = 'rgba(255, 255, 255, 0.15)';
+        Chart.defaults.color = 'rgba(255, 255, 255, 1)';
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: data,
+            options: {
+                // Cor do texto do gráfico
+                text: {
+                    color: '#fff',
+                },
+
+                // Cor das linhas de guia do gráfico
+                grid: {
+                    borderColor: '#fff',
+                },
+            }
+        });
+        myBarChart.defaults.backgroundColor = '#fff';
+        myBarChart.defaults.borderColor = '#fff';
+        myBarChart.defaults.color = '#fff';
                   </script>
+
                   <!-- End Line Chart -->
 
                 </div>
@@ -364,54 +357,55 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Recent Activity <span>| Today</span></h5>
-              <p>Aqui vai o Livepix</p>
+
             </div>
           </div><!-- End Recent Activity -->
           <!-- News & Updates Traffic -->
           <div class="card">
-            <div class="filter">
-              <a class="icon" href="#" data-bs-toggle="dropdown"><i class="bi bi-three-dots"></i></a>
-              <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
-                <li class="dropdown-header text-start">
-                  <h6>Filter</h6>
-                </li>
-
-                <li><a class="dropdown-item" href="#">Today</a></li>
-                <li><a class="dropdown-item" href="#">This Month</a></li>
-                <li><a class="dropdown-item" href="#">This Year</a></li>
-              </ul>
-            </div>
+            
 
             <div class="card-body pb-0">
               <h5 class="card-title">News &amp; Updates <span>| Today</span></h5>
 
               <div class="news">
                 <div class="post-item clearfix">
-                  <img src="img/news-1.jpg" alt="">
+                  <img src="static/img/news-1.jpg" alt="">
                   <h4><a href="#">Nihil blanditiis at in nihil autem</a></h4>
                   <p>Sit recusandae non aspernatur laboriosam. Quia enim eligendi sed ut harum...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-2.jpg" alt="">
+                  <img src="static/img/news-2.jpg" alt="">
                   <h4><a href="#">Quidem autem et impedit</a></h4>
                   <p>Illo nemo neque maiores vitae officiis cum eum turos elan dries werona nande...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-3.jpg" alt="">
+                  <img src="static/img/news-3.jpg" alt="">
                   <h4><a href="#">Id quia et et ut maxime similique occaecati ut</a></h4>
                   <p>Fugiat voluptas vero eaque accusantium eos. Consequuntur sed ipsam et totam...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-4.jpg" alt="">
+                  <img src="static/img/news-4.jpg" alt="">
                   <h4><a href="#">Laborum corporis quo dara net para</a></h4>
                   <p>Qui enim quia optio. Eligendi aut asperiores enim repellendusvel rerum cuder...</p>
                 </div>
 
                 <div class="post-item clearfix">
-                  <img src="img/news-5.jpg" alt="">
+                  <img src="static/img/news-5.jpg" alt="">
+                  <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
+                  <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
+                </div>
+
+                <div class="post-item clearfix">
+                  <img src="static/img/news-5.jpg" alt="">
+                  <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
+                  <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
+                </div>
+
+                <div class="post-item clearfix">
+                  <img src="static/img/news-5.jpg" alt="">
                   <h4><a href="#">Et dolores corrupti quae illo quod dolor</a></h4>
                   <p>Odit ut eveniet modi reiciendis. Atque cupiditate libero beatae dignissimos eius...</p>
                 </div>
@@ -454,7 +448,6 @@
   
   <script src="static/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="static/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="static/vendor/chart.js/chart.umd.js"></script>
   <script src="static/vendor/echarts/echarts.min.js"></script>
   <script src="static/vendor/quill/quill.min.js"></script>
   <script src="static/vendor/simple-datatables/simple-datatables.js"></script>

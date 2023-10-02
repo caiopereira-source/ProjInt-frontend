@@ -460,7 +460,7 @@ h6 {
 # Sections General
 --------------------------------------------------------------*/
 section {
-  padding: 60px 0;
+  padding: 0 0;
   overflow: hidden;
 }
 
@@ -1398,6 +1398,7 @@ section {
   padding: 0 0 0 0;
   color: #fff;
   font-size: 14px;
+  bottom: 0;
 }
 
 #footer .footer-top {
@@ -1541,9 +1542,8 @@ section {
 .wrapper {
   display: inline-flex;
   list-style: none;
-  height: 120px;
   width: 100%;
-  padding-top: 1.5rem;
+  padding-top: 1.2rem;
   font-family: "Poppins", sans-serif;
   justify-content: center;
 }
@@ -1624,3 +1624,17 @@ section {
   color: #fff;
 }
 
+.close-btn {
+  position: absolute;
+  margin-left: 2%;
+  top: 0.7rem;
+  right: 2rem;
+}
+
+.modal-style {
+  background-color: #383838;
+  color: #FFF;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 25%);
+}

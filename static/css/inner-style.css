@@ -9,7 +9,6 @@
 # General
 --------------------------------------------------------------*/
 
-
 body {
   font-family: "Open Sans", sans-serif;
 }
@@ -95,6 +94,8 @@ h6 {
 --------------------------------------------------------------*/
 /* Dropdown menus */
 .dropdown-menu {
+  background-color: #505050;
+  color: white;
   border-radius: 4px;
   padding: 10px 0;
   -webkit-animation-name: dropdown-animate;
@@ -104,7 +105,9 @@ h6 {
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
   border: 0;
-  box-shadow: 0 5px 30px 0 rgba(82, 63, 105, 0.2);
+  box-shadow: -1px 1px 71px 21px rgba(0,0,0,0.7);
+  -webkit-box-shadow: -1px 1px 71px 21px rgba(0,0,0,0.7);
+  -moz-box-shadow: -1px 1px 71px 21px rgba(0,0,0,0.7);
 }
 
 .dropdown-menu .dropdown-header,
@@ -112,10 +115,11 @@ h6 {
   text-align: center;
   font-size: 15px;
   padding: 10px 25px;
+  color: #fff;
 }
 
 .dropdown-menu .dropdown-footer a {
-  color: #000;
+  color: #fff;
   text-decoration: underline;
 }
 
@@ -149,13 +153,13 @@ h6 {
     content: "";
     width: 13px;
     height: 13px;
-    background: #fff;
+    background: #505050;
     position: absolute;
     top: -7px;
     right: 20px;
     transform: rotate(45deg);
-    border-top: 1px solid #eaedf1;
-    border-left: 1px solid #eaedf1;
+    border-top: 1px solid #505050;
+    border-left: 1px solid #505050;
   }
 }
 
@@ -241,7 +245,7 @@ h6 {
 }
 
 .card-title {
-  padding: 20px 0 15px 0;
+  padding: 5px 15px 15px;
   font-size: 18px;
   font-weight: 500;
   color: #fcaa43;
@@ -478,27 +482,30 @@ h6 {
   align-items: center;
   padding: 15px 10px;
   transition: 0.3s;
+  color: #fff;
 }
 
 .header-nav .notifications .notification-item i {
   margin: 0 20px 0 10px;
   font-size: 24px;
+  color: #fff;
 }
 
 .header-nav .notifications .notification-item h4 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 5px;
+  color: #fff;
 }
 
 .header-nav .notifications .notification-item p {
   font-size: 13px;
   margin-bottom: 3px;
-  color: #000;
+  color: #fff;
 }
 
 .header-nav .notifications .notification-item:hover {
-  background-color: #fafafa;
+  background-color: #383838;
 }
 
 .header-nav .messages {
@@ -512,6 +519,7 @@ h6 {
 
 .header-nav .messages .message-item a {
   display: flex;
+  color: #fff;
 }
 
 .header-nav .messages .message-item img {
@@ -523,40 +531,43 @@ h6 {
   font-size: 16px;
   font-weight: 600;
   margin-bottom: 5px;
-  color: #444444;
+  color: #fff ;
 }
 
 .header-nav .messages .message-item p {
   font-size: 13px;
   margin-bottom: 3px;
-  color: #919191;
+  color: #fff;
 }
 
 .header-nav .messages .message-item:hover {
-  background-color: #f6f9ff;
+  background-color: #383838;
 }
 
 .header-nav .profile {
   min-width: 240px;
   padding-bottom: 0;
   top: 8px !important;
+  color: #fff;
 }
 
 .header-nav .profile .dropdown-header h6 {
   font-size: 18px;
   margin-bottom: 0;
   font-weight: 600;
-  color: #444444;
+  color: #fff;
 }
 
 .header-nav .profile .dropdown-header span {
   font-size: 14px;
+  color: #fff;
 }
 
 .header-nav .profile .dropdown-item {
   font-size: 14px;
   padding: 10px 15px;
   transition: 0.3s;
+  color: #fff;
 }
 
 .header-nav .profile .dropdown-item i {
@@ -566,7 +577,7 @@ h6 {
 }
 
 .header-nav .profile .dropdown-item:hover {
-  background-color: #f6f9ff;
+  background-color: #383838;
 }
 
 /*--------------------------------------------------------------
@@ -740,7 +751,14 @@ h6 {
   position: absolute;
   right: 0px;
   top: 15px;
+  
 }
+
+.filter .dropdown-menu{
+  box-shadow: none;
+  
+}
+
 
 .dashboard .filter .icon {
   color: #fff;
@@ -753,6 +771,7 @@ h6 {
 
 .dashboard .filter .dropdown-header {
   padding: 8px 15px;
+  
 }
 
 .dashboard .filter .dropdown-header h6 {
@@ -760,13 +779,19 @@ h6 {
   font-size: 14px;
   font-weight: 600;
   letter-spacing: 1px;
-  color: #aab7cf;
+  color: #fff;
   margin-bottom: 0;
   padding: 0;
 }
 
 .dashboard .filter .dropdown-item {
   padding: 8px 15px;
+  color: #fff;
+  
+}
+
+.dashboard .filter .dropdown-item:hover {
+  background-color: #383838;
 }
 
 /* Info Cards */
@@ -1194,23 +1219,23 @@ h6 {
 }
 
 
-.footer {
-  position: fixed;
+.inner-footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
   padding: 0 0;
   font-size: 14px;
   transition: all 0.3s;
   border-top: 1px solid #000;
   background-color: #000;
-  bottom: 0;
-  width: 100%;
 }
 
-.footer .copyright {
+.inner-footer .copyright {
   text-align: center;
   color: #fff;
 }
 
-.footer .credits {
+.inner-footer .credits {
   padding-top: 5px;
   text-align: center;
   font-size: 13px;
@@ -1247,8 +1272,15 @@ h6 {
 }
 
 .table {
-background-color: #383838;
-color: #fff;
+  table-layout: fixed;
+  width: 100%;
+  background-color: #383838;
+  color: #fff;
+}
+
+td {
+  width: 25%;
+  border-bottom: solid rgba(255, 255, 255, 0.14);
 }
 
 .delete-button {
@@ -1271,7 +1303,6 @@ color: #fff;
 
   .svgIcon {
     width: 12px;
-    transition-duration: .3s;
   }
 
   .svgIcon path {
@@ -1279,17 +1310,8 @@ color: #fff;
   }
 
   .delete-button:hover {
-    width: 100px;
-    border-radius: 50px;
-    transition-duration: .2s;
     background-color: rgb(255, 69, 69);
     align-items: center;
-  }
-
-  .delete-button:hover .svgIcon {
-    width: 50px;
-    transition-duration: .3s;
-    transform: translateY(60%);
   }
 
   .delete-button::before {
@@ -1297,15 +1319,12 @@ color: #fff;
     top: -20px;
     content: "Excluir";
     color: white;
-    transition-duration: .2s;
     font-size: 2px;
   }
 
   .delete-button:hover::before {
     font-size: 13px;
     opacity: 1;
-    transform: translateY(30px);
-    transition-duration: .3s;
   }
 
   .action-cell {
